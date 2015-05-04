@@ -1,0 +1,1139 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# Chapter 3\n## ￼Obtaining, Processing, and Preparing Data with Spark",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430666822795_-557818486",
+      "id": "20150504-002702_876909844",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eChapter 3\u003c/h1\u003e\n\u003ch2\u003e￼Obtaining, Processing, and Preparing Data with Spark\u003c/h2\u003e\n"
+      },
+      "dateCreated": "May 4, 2015 12:27:02 AM",
+      "dateStarted": "May 4, 2015 1:27:34 AM",
+      "dateFinished": "May 4, 2015 1:27:36 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n###The MovieLens 100k dataset",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430670543316_-1558870014",
+      "id": "20150504-012903_635376646",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch3\u003eThe MovieLens 100k dataset\u003c/h3\u003e\n"
+      },
+      "dateCreated": "May 4, 2015 1:29:03 AM",
+      "dateStarted": "May 4, 2015 1:29:26 AM",
+      "dateFinished": "May 4, 2015 1:29:26 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\nwget http://files.grouplens.org/datasets/movielens/ml-100k.zip",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430666182341_-1177988264",
+      "id": "20150504-001622_1153376693",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "--2015-05-04 16:26:32--  http://files.grouplens.org/datasets/movielens/ml-100k.zip\nResolving files.grouplens.org... 128.101.34.146\nConnecting to files.grouplens.org|128.101.34.146|:80... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 4923869 (4.7M) [application/zip]\nSaving to: \u0027ml-100k.zip\u0027\n\n     0K .......... .......... .......... .......... ..........  1%  133K 36s\n    50K .......... .......... .......... .......... ..........  2%  263K 27s\n   100K .......... .......... .......... .......... ..........  3%  254K 24s\n   150K .......... .......... .......... .......... ..........  4%  287K 22s\n   200K .......... .......... .......... .......... ..........  5% 1.74M 18s\n   250K .......... .......... .......... .......... ..........  6%  478K 16s\n   300K .......... .......... .......... .......... ..........  7%  706K 15s\n   350K .......... .......... .......... .......... ..........  8% 2.66M 13s\n   400K .......... .......... .......... .......... ..........  9%  305K 13s\n   450K .......... .......... .......... .......... .......... 10%  242K 13s\n   500K .......... .......... .......... .......... .......... 11% 1.25M 12s\n   550K .......... .......... .......... .......... .......... 12% 14.9M 11s\n   600K .......... .......... .......... .......... .......... 13% 27.8M 10s\n   650K .......... .......... .......... .......... .......... 14% 40.8M 9s\n   700K .......... .......... .......... .......... .......... 15%  339K 9s\n   750K .......... .......... .......... .......... .......... 16% 1.07M 9s\n   800K .......... .......... .......... .......... .......... 17%  237K 9s\n   850K .......... .......... .......... .......... .......... 18%  369K 9s\n   900K .......... .......... .......... .......... .......... 19% 8.47M 9s\n   950K .......... .......... .......... .......... .......... 20%  108M 8s\n  1000K .......... .......... .......... .......... .......... 21%  193M 8s\n  1050K .......... .......... .......... .......... .......... 22%  719K 7s\n  1100K .......... .......... .......... .......... .......... 23%  383K 7s\n  1150K .......... .......... .......... .......... .......... 24% 2.58M 7s\n  1200K .......... .......... .......... .......... .......... 25%  218K 7s\n  1250K .......... .......... .......... .......... .......... 27%  159M 7s\n  1300K .......... .......... .......... .......... .......... 28%  294K 7s\n  1350K .......... .......... .......... .......... .......... 29%  142M 7s\n  1400K .......... .......... .......... .......... .......... 30% 14.0M 6s\n  1450K .......... .......... .......... .......... .......... 31%  365K 6s\n  1500K .......... .......... .......... .......... .......... 32%  824K 6s\n  1550K .......... .......... .......... .......... .......... 33%  413K 6s\n  1600K .......... .......... .......... .......... .......... 34%  761K 6s\n  1650K .......... .......... .......... .......... .......... 35%  440K 6s\n  1700K .......... .......... .......... .......... .......... 36%  823K 6s\n  1750K .......... .......... .......... .......... .......... 37%  468K 6s\n  1800K .......... .......... .......... .......... .......... 38%  844K 6s\n  1850K .......... .......... .......... .......... .......... 39%  398K 6s\n  1900K .......... .......... .......... .......... .......... 40%  889K 5s\n  1950K .......... .......... .......... .......... .......... 41% 1.12M 5s\n  2000K .......... .......... .......... .......... .......... 42%  438K 5s\n  2050K .......... .......... .......... .......... .......... 43%  861K 5s\n  2100K .......... .......... .......... .......... .......... 44%  413K 5s\n  2150K .......... .......... .......... .......... .......... 45%  701K 5s\n  2200K .......... .......... .......... .......... .......... 46%  559K 5s\n  2250K .......... .......... .......... .......... .......... 47%  514K 5s\n  2300K .......... .......... .......... .......... .......... 48% 2.89M 4s\n  2350K .......... .......... .......... .......... .......... 49%  173K 5s\n  2400K .......... .......... .......... .......... .......... 50%  483K 4s\n  2450K .......... .......... .......... .......... .......... 51% 91.1M 4s\n  2500K .......... .......... .......... .......... .......... 53%  306K 4s\n  2550K .......... .......... .......... .......... .......... 54%  641K 4s\n  2600K .......... .......... .......... .......... .......... 55%  267K 4s\n  2650K .......... .......... .......... .......... .......... 56%  419K 4s\n  2700K .......... .......... .......... .......... .......... 57%  584K 4s\n  2750K .......... .......... .......... .......... .......... 58%  274K 4s\n  2800K .......... .......... .......... .......... .......... 59%  480K 4s\n  2850K .......... .......... .......... .......... .......... 60%  302K 4s\n  2900K .......... .......... .......... .......... .......... 61%  495K 4s\n  2950K .......... .......... .......... .......... .......... 62%  453K 4s\n  3000K .......... .......... .......... .......... .......... 63%  271K 4s\n  3050K .......... .......... .......... .......... .......... 64%  690K 3s\n  3100K .......... .......... .......... .......... .......... 65%  283K 3s\n  3150K .......... .......... .......... .......... .......... 66%  477K 3s\n  3200K .......... .......... .......... .......... .......... 67%  486K 3s\n  3250K .......... .......... .......... .......... .......... 68%  305K 3s\n  3300K .......... .......... .......... .......... .......... 69%  412K 3s\n  3350K .......... .......... .......... .......... .......... 70%  545K 3s\n  3400K .......... .......... .......... .......... .......... 71%  459K 3s\n  3450K .......... .......... .......... .......... .......... 72%  272K 3s\n  3500K .......... .......... .......... .......... .......... 73%  657K 3s\n  3550K .......... .......... .......... .......... .......... 74%  270K 3s\n  3600K .......... .......... .......... .......... .......... 75%  435K 2s\n  3650K .......... .......... .......... .......... .......... 76%  296K 2s\n  3700K .......... .......... .......... .......... .......... 77%  535K 2s\n  3750K .......... .......... .......... .......... .......... 79%  452K 2s\n  3800K .......... .......... .......... .......... .......... 80%  299K 2s\n  3850K .......... .......... .......... .......... .......... 81%  504K 2s\n  3900K .......... .......... .......... .......... .......... 82%  472K 2s\n  3950K .......... .......... .......... .......... .......... 83%  280K 2s\n  4000K .......... .......... .......... .......... .......... 84%  584K 2s\n  4050K .......... .......... .......... .......... .......... 85%  274K 2s\n  4100K .......... .......... .......... .......... .......... 86%  466K 1s\n  4150K .......... .......... .......... .......... .......... 87%  509K 1s\n  4200K .......... .......... .......... .......... .......... 88%  305K 1s\n  4250K .......... .......... .......... .......... .......... 89%  454K 1s\n  4300K .......... .......... .......... .......... .......... 90%  498K 1s\n  4350K .......... .......... .......... .......... .......... 91%  308K 1s\n  4400K .......... .......... .......... .......... .......... 92%  463K 1s\n  4450K .......... .......... .......... .......... .......... 93%  489K 1s\n  4500K .......... .......... .......... .......... .......... 94%  307K 1s\n  4550K .......... .......... .......... .......... .......... 95% 1.26M 0s\n  4600K .......... .......... .......... .......... .......... 96%  314K 0s\n  4650K .......... .......... .......... .......... .......... 97%  275K 0s\n  4700K .......... .......... .......... .......... .......... 98% 1.60M 0s\n  4750K .......... .......... .......... .......... .......... 99%  305K 0s\n  4800K ........                                              100% 4.74M\u003d11s\n\n2015-05-04 16:26:44 (457 KB/s) - \u0027ml-100k.zip\u0027 saved [4923869/4923869]\n\n"
+      },
+      "dateCreated": "May 4, 2015 12:16:22 AM",
+      "dateStarted": "May 4, 2015 4:26:31 PM",
+      "dateFinished": "May 4, 2015 4:26:45 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\nunzip ml-100k.zip",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430670530530_1596288794",
+      "id": "20150504-012850_110195509",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "Archive:  ml-100k.zip\n   creating: ml-100k/\n  inflating: ml-100k/allbut.pl       \n  inflating: ml-100k/mku.sh          \n  inflating: ml-100k/README          \n  inflating: ml-100k/u.data          \n  inflating: ml-100k/u.genre         \n  inflating: ml-100k/u.info          \n  inflating: ml-100k/u.item          \n  inflating: ml-100k/u.occupation    \n  inflating: ml-100k/u.user          \n  inflating: ml-100k/u1.base         \n  inflating: ml-100k/u1.test         \n  inflating: ml-100k/u2.base         \n  inflating: ml-100k/u2.test         \n  inflating: ml-100k/u3.base         \n  inflating: ml-100k/u3.test         \n  inflating: ml-100k/u4.base         \n  inflating: ml-100k/u4.test         \n  inflating: ml-100k/u5.base         \n  inflating: ml-100k/u5.test         \n  inflating: ml-100k/ua.base         \n  inflating: ml-100k/ua.test         \n  inflating: ml-100k/ub.base         \n  inflating: ml-100k/ub.test         \n"
+      },
+      "dateCreated": "May 4, 2015 1:28:50 AM",
+      "dateStarted": "May 4, 2015 4:27:16 PM",
+      "dateFinished": "May 4, 2015 4:27:16 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\nhead -5 ml-100k/u.user",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430670611942_-1737485449",
+      "id": "20150504-013011_314538269",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "1|24|M|technician|85711\n2|53|F|other|94043\n3|23|M|writer|32067\n4|24|M|technician|43537\n5|33|F|other|15213\n"
+      },
+      "dateCreated": "May 4, 2015 1:30:11 AM",
+      "dateStarted": "May 4, 2015 4:28:48 PM",
+      "dateFinished": "May 4, 2015 4:28:49 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Exploring and visualizing your data",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430670625028_141658828",
+      "id": "20150504-013025_532330660",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch3\u003eExploring and visualizing your data\u003c/h3\u003e\n"
+      },
+      "dateCreated": "May 4, 2015 1:30:25 AM",
+      "dateStarted": "May 4, 2015 4:27:25 PM",
+      "dateFinished": "May 4, 2015 4:27:26 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val user_data \u003d sc.textFile(\"ml-100k/u.user\")",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430670666479_1276344631",
+      "id": "20150504-013106_1117319281",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "user_data: org.apache.spark.rdd.RDD[String] \u003d ml-100k/u.user MappedRDD[1] at textFile at \u003cconsole\u003e:19\n"
+      },
+      "dateCreated": "May 4, 2015 1:31:06 AM",
+      "dateStarted": "May 4, 2015 4:28:53 PM",
+      "dateFinished": "May 4, 2015 4:29:18 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "user_data.take(3)",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430674811390_168566583",
+      "id": "20150504-024011_328144305",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res1: Array[String] \u003d Array(1|24|M|technician|85711, 2|53|F|other|94043, 3|23|M|writer|32067)\n"
+      },
+      "dateCreated": "May 4, 2015 2:40:11 AM",
+      "dateStarted": "May 4, 2015 4:29:23 PM",
+      "dateFinished": "May 4, 2015 4:29:24 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val user_fields \u003d user_data.map(_.split(\"\\\\|\"))",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430675848633_1064504444",
+      "id": "20150504-025728_1183250122",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "user_fields: org.apache.spark.rdd.RDD[Array[String]] \u003d MappedRDD[2] at map at \u003cconsole\u003e:21\n"
+      },
+      "dateCreated": "May 4, 2015 2:57:28 AM",
+      "dateStarted": "May 4, 2015 4:29:27 PM",
+      "dateFinished": "May 4, 2015 4:29:29 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "user_fields.take(1)",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430678667131_-1366943557",
+      "id": "20150504-034427_1801310580",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res4: Array[Array[String]] \u003d Array(Array(1, 24, M, technician, 85711))\n"
+      },
+      "dateCreated": "May 4, 2015 3:44:27 AM",
+      "dateStarted": "May 4, 2015 4:29:30 PM",
+      "dateFinished": "May 4, 2015 4:29:31 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val num_users \u003d user_fields.map(s \u003d\u003e s(0)).count()",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430677194693_664617647",
+      "id": "20150504-031954_629688287",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "num_users: Long \u003d 943\n"
+      },
+      "dateCreated": "May 4, 2015 3:19:54 AM",
+      "dateStarted": "May 4, 2015 4:29:33 PM",
+      "dateFinished": "May 4, 2015 4:29:33 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val num_genders \u003d user_fields.map(s \u003d\u003e s(2)).distinct().count()",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430677267190_1543307514",
+      "id": "20150504-032107_565692342",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "num_genders: Long \u003d 2\n"
+      },
+      "dateCreated": "May 4, 2015 3:21:07 AM",
+      "dateStarted": "May 4, 2015 4:29:35 PM",
+      "dateFinished": "May 4, 2015 4:29:36 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val num_occupations \u003d user_fields.map(s \u003d\u003e s(3)).distinct().count()",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430677336240_-1508243282",
+      "id": "20150504-032216_1689603556",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "num_occupations: Long \u003d 21\n"
+      },
+      "dateCreated": "May 4, 2015 3:22:16 AM",
+      "dateStarted": "May 4, 2015 4:29:37 PM",
+      "dateFinished": "May 4, 2015 4:29:38 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val num_zipcodes \u003d user_fields.map(s \u003d\u003e s(4)).distinct().count()",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430677430100_632989972",
+      "id": "20150504-032350_843772968",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "num_zipcodes: Long \u003d 795\n"
+      },
+      "dateCreated": "May 4, 2015 3:23:50 AM",
+      "dateStarted": "May 4, 2015 4:29:39 PM",
+      "dateFinished": "May 4, 2015 4:29:40 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val ages \u003d user_fields.map(s \u003d\u003e s(1).toInt).collect()",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430679594018_-458816325",
+      "id": "20150504-035954_1368040952",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "ages: Array[Int] \u003d Array(24, 53, 23, 24, 33, 42, 57, 36, 29, 53, 39, 28, 47, 45, 49, 21, 30, 35, 40, 42, 26, 25, 30, 21, 39, 49, 40, 32, 41, 7, 24, 28, 23, 38, 20, 19, 23, 28, 41, 38, 33, 30, 29, 26, 29, 27, 53, 45, 23, 21, 28, 18, 26, 22, 37, 25, 16, 27, 49, 50, 36, 27, 31, 32, 51, 23, 17, 19, 24, 27, 39, 48, 24, 39, 24, 20, 30, 26, 39, 34, 21, 50, 40, 32, 51, 26, 47, 49, 43, 60, 55, 32, 48, 26, 31, 25, 43, 49, 20, 36, 15, 38, 26, 27, 24, 61, 39, 44, 29, 19, 57, 30, 47, 27, 31, 40, 20, 21, 32, 47, 54, 32, 48, 34, 30, 28, 33, 24, 36, 20, 59, 24, 53, 31, 23, 51, 50, 46, 20, 30, 49, 13, 42, 53, 31, 45, 40, 33, 35, 20, 38, 33, 25, 25, 32, 25, 57, 50, 23, 27, 50, 25, 49, 47, 20, 47, 37, 48, 52, 53, 48, 55, 56, 30, 26, 28, 20, 26, 15, 22, 26, 36, 33, 37, 53, 39, 26, 42, 32, 30, 33, 42, 29, 3..."
+      },
+      "dateCreated": "May 4, 2015 3:59:54 AM",
+      "dateStarted": "May 4, 2015 4:29:42 PM",
+      "dateFinished": "May 4, 2015 4:29:43 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n# Chapter 4\n## Building a Recommendation Engine with Spark",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430679828159_-272492232",
+      "id": "20150504-040348_13912712",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eChapter 4\u003c/h1\u003e\n\u003ch2\u003eBuilding a Recommendation Engine with Spark\u003c/h2\u003e\n"
+      },
+      "dateCreated": "May 4, 2015 4:03:48 AM",
+      "dateStarted": "May 4, 2015 4:29:45 PM",
+      "dateFinished": "May 4, 2015 4:29:46 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val rawData \u003d sc.textFile(\"ml-100k/u.data\")\nrawData.first()",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430679958450_-884811623",
+      "id": "20150504-040558_1181478635",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "rawData: org.apache.spark.rdd.RDD[String] \u003d ml-100k/u.data MappedRDD[18] at textFile at \u003cconsole\u003e:19\nres11: String \u003d 196\t242\t3\t881250949\n"
+      },
+      "dateCreated": "May 4, 2015 4:05:58 AM",
+      "dateStarted": "May 4, 2015 4:29:48 PM",
+      "dateFinished": "May 4, 2015 4:29:48 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val rawRatings \u003d rawData.map(_.split(\"\\t\").take(3))",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680044787_-872394033",
+      "id": "20150504-040724_1127764259",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "rawRatings: org.apache.spark.rdd.RDD[Array[String]] \u003d MappedRDD[19] at map at \u003cconsole\u003e:21\n"
+      },
+      "dateCreated": "May 4, 2015 4:07:24 AM",
+      "dateStarted": "May 4, 2015 4:29:50 PM",
+      "dateFinished": "May 4, 2015 4:29:51 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.mllib.recommendation.ALS\r",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680067528_-416066513",
+      "id": "20150504-040747_1201248729",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import org.apache.spark.mllib.recommendation.ALS\n"
+      },
+      "dateCreated": "May 4, 2015 4:07:47 AM",
+      "dateStarted": "May 4, 2015 4:29:52 PM",
+      "dateFinished": "May 4, 2015 4:29:53 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.mllib.recommendation.Rating",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680084285_1640447006",
+      "id": "20150504-040804_1706761128",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import org.apache.spark.mllib.recommendation.Rating\n"
+      },
+      "dateCreated": "May 4, 2015 4:08:04 AM",
+      "dateStarted": "May 4, 2015 4:29:55 PM",
+      "dateFinished": "May 4, 2015 4:29:55 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val ratings \u003d rawRatings.map { case Array(user, movie, rating) \u003d\u003e Rating(user.toInt, movie.toInt, rating.toDouble) }",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680129678_-1439590533",
+      "id": "20150504-040849_2084482370",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "ratings: org.apache.spark.rdd.RDD[org.apache.spark.mllib.recommendation.Rating] \u003d MappedRDD[20] at map at \u003cconsole\u003e:25\n"
+      },
+      "dateCreated": "May 4, 2015 4:08:49 AM",
+      "dateStarted": "May 4, 2015 4:29:57 PM",
+      "dateFinished": "May 4, 2015 4:29:58 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "ratings.first()",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680158132_-2013605243",
+      "id": "20150504-040918_2098092719",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res17: org.apache.spark.mllib.recommendation.Rating \u003d Rating(196,242,3.0)\n"
+      },
+      "dateCreated": "May 4, 2015 4:09:18 AM",
+      "dateStarted": "May 4, 2015 4:29:59 PM",
+      "dateFinished": "May 4, 2015 4:30:00 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val model \u003d ALS.train(ratings, 50, 10, 0.01)",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680171065_-271046826",
+      "id": "20150504-040931_1993491334",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "model: org.apache.spark.mllib.recommendation.MatrixFactorizationModel \u003d org.apache.spark.mllib.recommendation.MatrixFactorizationModel@3c757cb8\n"
+      },
+      "dateCreated": "May 4, 2015 4:09:31 AM",
+      "dateStarted": "May 4, 2015 4:30:01 PM",
+      "dateFinished": "May 4, 2015 4:30:14 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "model.userFeatures",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680187514_881892385",
+      "id": "20150504-040947_1267298479",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res20: org.apache.spark.rdd.RDD[(Int, Array[Double])] \u003d usersOut FlatMappedRDD[216] at flatMap at ALS.scala:388\n"
+      },
+      "dateCreated": "May 4, 2015 4:09:47 AM",
+      "dateStarted": "May 4, 2015 4:30:16 PM",
+      "dateFinished": "May 4, 2015 4:30:17 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "model.userFeatures.count",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680208444_-1734369487",
+      "id": "20150504-041008_1112838177",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res22: Long \u003d 943\n"
+      },
+      "dateCreated": "May 4, 2015 4:10:08 AM",
+      "dateStarted": "May 4, 2015 4:30:18 PM",
+      "dateFinished": "May 4, 2015 4:30:19 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "model.productFeatures.count",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680220937_1090472262",
+      "id": "20150504-041020_1291874790",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res24: Long \u003d 1682\n"
+      },
+      "dateCreated": "May 4, 2015 4:10:20 AM",
+      "dateStarted": "May 4, 2015 4:30:21 PM",
+      "dateFinished": "May 4, 2015 4:30:21 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val predictedRating \u003d model.predict(789, 123)\r",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680235794_-1892855385",
+      "id": "20150504-041035_690668979",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "predictedRating: Double \u003d 3.3326308438248478\n"
+      },
+      "dateCreated": "May 4, 2015 4:10:35 AM",
+      "dateStarted": "May 4, 2015 4:30:23 PM",
+      "dateFinished": "May 4, 2015 4:30:23 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val userId \u003d 789\nval K \u003d 10\nval topKRecs \u003d model.recommendProducts(userId, K)",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680278801_-1227984095",
+      "id": "20150504-041118_690410545",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "userId: Int \u003d 789\nK: Int \u003d 10\ntopKRecs: Array[org.apache.spark.mllib.recommendation.Rating] \u003d Array(Rating(789,180,5.6863309199292935), Rating(789,32,5.616038624647502), Rating(789,13,5.521756677866888), Rating(789,675,5.472299418836203), Rating(789,96,5.349401059163751), Rating(789,192,5.331185480530794), Rating(789,250,5.307072221724714), Rating(789,135,5.276664641611842), Rating(789,134,5.24613936363992), Rating(789,223,5.196655014697546))\n"
+      },
+      "dateCreated": "May 4, 2015 4:11:18 AM",
+      "dateStarted": "May 4, 2015 4:30:25 PM",
+      "dateFinished": "May 4, 2015 4:30:26 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "println(topKRecs.mkString(\"\\n\"))",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680309183_1676747508",
+      "id": "20150504-041149_1335200940",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "Rating(789,180,5.6863309199292935)\nRating(789,32,5.616038624647502)\nRating(789,13,5.521756677866888)\nRating(789,675,5.472299418836203)\nRating(789,96,5.349401059163751)\nRating(789,192,5.331185480530794)\nRating(789,250,5.307072221724714)\nRating(789,135,5.276664641611842)\nRating(789,134,5.24613936363992)\nRating(789,223,5.196655014697546)\n"
+      },
+      "dateCreated": "May 4, 2015 4:11:49 AM",
+      "dateStarted": "May 4, 2015 4:30:28 PM",
+      "dateFinished": "May 4, 2015 4:30:28 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val movies \u003d sc.textFile(\"ml-100k/u.item\")",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680439867_420743208",
+      "id": "20150504-041359_22305785",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "movies: org.apache.spark.rdd.RDD[String] \u003d ml-100k/u.item MappedRDD[230] at textFile at \u003cconsole\u003e:21\n"
+      },
+      "dateCreated": "May 4, 2015 4:13:59 AM",
+      "dateStarted": "May 4, 2015 4:30:30 PM",
+      "dateFinished": "May 4, 2015 4:30:30 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val titles \u003d movies.map(line \u003d\u003e line.split(\"\\\\|\").take(2))\r                   .map(array \u003d\u003e (array(0).toInt,\r                                  array(1))).collectAsMap()",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680508954_1795694570",
+      "id": "20150504-041508_2125205821",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "titles: scala.collection.Map[Int,String] \u003d Map(137 -\u003e Big Night (1996), 891 -\u003e Bent (1997), 550 -\u003e Die Hard: With a Vengeance (1995), 1205 -\u003e Secret Agent, The (1996), 146 -\u003e Unhook the Stars (1996), 864 -\u003e My Fellow Americans (1996), 559 -\u003e Interview with the Vampire (1994), 218 -\u003e Cape Fear (1991), 568 -\u003e Speed (1994), 227 -\u003e Star Trek VI: The Undiscovered Country (1991), 765 -\u003e Boomerang (1992), 1115 -\u003e Twelfth Night (1996), 774 -\u003e Prophecy, The (1995), 433 -\u003e Heathers (1989), 92 -\u003e True Romance (1993), 1528 -\u003e Nowhere (1997), 846 -\u003e To Gillian on Her 37th Birthday (1996), 1187 -\u003e Switchblade Sisters (1975), 1501 -\u003e Prisoner of the Mountains (Kavkazsky Plennik) (1996), 442 -\u003e Amityville Curse, The (1990), 1160 -\u003e Love! Valour! Compassion! (1997), 101 -\u003e Heavy Metal (1981), 1196 -\u003e Sa..."
+      },
+      "dateCreated": "May 4, 2015 4:15:08 AM",
+      "dateStarted": "May 4, 2015 4:30:32 PM",
+      "dateFinished": "May 4, 2015 4:30:33 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "titles(123)",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680534113_691880624",
+      "id": "20150504-041534_1639236997",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res32: String \u003d Frighteners, The (1996)\n"
+      },
+      "dateCreated": "May 4, 2015 4:15:34 AM",
+      "dateStarted": "May 4, 2015 4:30:35 PM",
+      "dateFinished": "May 4, 2015 4:30:35 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val moviesForUser \u003d ratings.keyBy(_.user).lookup(789)",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680610869_1270481673",
+      "id": "20150504-041650_36161011",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "moviesForUser: Seq[org.apache.spark.mllib.recommendation.Rating] \u003d WrappedArray(Rating(789,1012,4.0), Rating(789,127,5.0), Rating(789,475,5.0), Rating(789,93,4.0), Rating(789,1161,3.0), Rating(789,286,1.0), Rating(789,293,4.0), Rating(789,9,5.0), Rating(789,50,5.0), Rating(789,294,3.0), Rating(789,181,4.0), Rating(789,1,3.0), Rating(789,1008,4.0), Rating(789,508,4.0), Rating(789,284,3.0), Rating(789,1017,3.0), Rating(789,137,2.0), Rating(789,111,3.0), Rating(789,742,3.0), Rating(789,248,3.0), Rating(789,249,3.0), Rating(789,1007,4.0), Rating(789,591,3.0), Rating(789,150,5.0), Rating(789,276,5.0), Rating(789,151,2.0), Rating(789,129,5.0), Rating(789,100,5.0), Rating(789,741,5.0), Rating(789,288,3.0), Rating(789,762,3.0), Rating(789,628,3.0), Rating(789,124,4.0))\n"
+      },
+      "dateCreated": "May 4, 2015 4:16:50 AM",
+      "dateStarted": "May 4, 2015 4:30:37 PM",
+      "dateFinished": "May 4, 2015 4:30:38 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "moviesForUser.sortBy(-_.rating).take(10)\r             .map(rating \u003d\u003e (titles(rating.product), rating.rating))\r             .foreach(println)",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680637126_-1264012574",
+      "id": "20150504-041717_563072477",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "(Godfather, The (1972),5.0)\n(Trainspotting (1996),5.0)\n(Dead Man Walking (1995),5.0)\n(Star Wars (1977),5.0)\n(Swingers (1996),5.0)\n(Leaving Las Vegas (1995),5.0)\n(Bound (1996),5.0)\n(Fargo (1996),5.0)\n(Last Supper, The (1995),5.0)\n(Private Parts (1997),4.0)\n"
+      },
+      "dateCreated": "May 4, 2015 4:17:17 AM",
+      "dateStarted": "May 4, 2015 4:30:40 PM",
+      "dateFinished": "May 4, 2015 4:30:41 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "topKRecs.map(rating \u003d\u003e (titles(rating.product), rating.rating)).\nforeach(println)",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680679092_1356188733",
+      "id": "20150504-041759_1068762408",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "(Apocalypse Now (1979),5.6863309199292935)\n(Crumb (1994),5.616038624647502)\n(Mighty Aphrodite (1995),5.521756677866888)\n(Nosferatu (Nosferatu, eine Symphonie des Grauens) (1922),5.472299418836203)\n(Terminator 2: Judgment Day (1991),5.349401059163751)\n(Raging Bull (1980),5.331185480530794)\n(Fifth Element, The (1997),5.307072221724714)\n(2001: A Space Odyssey (1968),5.276664641611842)\n(Citizen Kane (1941),5.24613936363992)\n(Sling Blade (1996),5.196655014697546)\n"
+      },
+      "dateCreated": "May 4, 2015 4:17:59 AM",
+      "dateStarted": "May 4, 2015 4:30:42 PM",
+      "dateFinished": "May 4, 2015 4:30:43 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Item recommendations",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680726005_-2002407010",
+      "id": "20150504-041846_2020304822",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch3\u003eItem recommendations\u003c/h3\u003e\n"
+      },
+      "dateCreated": "May 4, 2015 4:18:46 AM",
+      "dateStarted": "May 4, 2015 4:30:44 PM",
+      "dateFinished": "May 4, 2015 4:30:44 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430680916712_114156342",
+      "id": "20150504-042156_1155476757",
+      "dateCreated": "May 4, 2015 4:21:56 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "ML with Spark",
+  "id": "2ANXZG2K6",
+  "angularObjects": {},
+  "config": {
+    "looknfeel": "default"
+  },
+  "info": {}
+}
