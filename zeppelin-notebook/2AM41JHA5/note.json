@@ -1,0 +1,51 @@
+{
+  "paragraphs": [
+    {
+      "text": "val a \u003d 1",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430713128998_618897866",
+      "id": "20150504-131848_1445898822",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "a: Int \u003d 1\n"
+      },
+      "dateCreated": "May 4, 2015 1:18:48 PM",
+      "dateStarted": "May 4, 2015 1:23:31 PM",
+      "dateFinished": "May 4, 2015 1:23:33 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1430713141994_45468763",
+      "id": "20150504-131901_1458062594",
+      "dateCreated": "May 4, 2015 1:19:01 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "id": "2AM41JHA5",
+  "angularObjects": {},
+  "config": {},
+  "info": {}
+}
